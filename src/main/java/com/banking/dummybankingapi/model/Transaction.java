@@ -4,32 +4,28 @@ package com.banking.dummybankingapi.model;
 import com.banking.dummybankingapi.model.base.BaseEntity;
 import com.banking.dummybankingapi.model.enumeration.TransactionStatusTypeEnum;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
 public class Transaction extends BaseEntity<Long> {
-    private Long amount;
 
-    @CreationTimestamp
+    @Column(precision = 10, scale = 2)
+    private BigDecimal amount;
+
     private LocalDateTime date;
 
     private Integer type;
 
-    @ManyToOne
-    private Account accountFrom;
+    private String accountCodeFrom;
 
-    @ManyToOne
-    private Account accountTo;
+    private String accountCodeTo;
 
     private String comment;
 
@@ -37,10 +33,24 @@ public class Transaction extends BaseEntity<Long> {
     private TransactionStatusTypeEnum status;
 
 
+    public Transaction(Long id, BigDecimal amount, Integer type, String accountCodeFrom, String accountCodeTo, String comment) {
+        super(id);
+        this.amount = amount;
+        this.type = type;
+        this.accountCodeFrom = accountCodeFrom;
+        this.accountCodeTo = accountCodeTo;
+        this.comment = comment;
+    }
+
     @PrePersist
     public void prePersist() {
+        if (date == null) {
+            date = LocalDateTime.now();
+        }
+
         if (status == null) {
             status = TransactionStatusTypeEnum.PENDING;
         }
     }
+
 }

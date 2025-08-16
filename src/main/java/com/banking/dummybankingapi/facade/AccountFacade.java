@@ -5,6 +5,7 @@ import com.banking.dummybankingapi.model.Branch;
 import com.banking.dummybankingapi.service.AccountService;
 import com.banking.dummybankingapi.service.BranchService;
 import com.banking.dummybankingapi.service.dto.AccountRequestDto;
+import com.banking.dummybankingapi.service.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -21,11 +22,9 @@ public class AccountFacade {
         return accountService.findAll();
     }
 
-    public void createAccount(AccountRequestDto requestDto) {
-        Branch branch = branchService.findByCode(requestDto.getBranchCode());
+    public Account createAccount(AccountRequestDto requestDto) {
         Account account = modelMapper.map(requestDto, Account.class);
-        account.setBranch(branch);
-        accountService.save(account);
+        return accountService.save(account);
     }
 
     public Account readAccount(Long id) {

@@ -12,7 +12,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountRequestDto extends BaseRequestDto {
+    private Long id;
     private String code;
     private String name;
-    private Integer branchCode;
 }

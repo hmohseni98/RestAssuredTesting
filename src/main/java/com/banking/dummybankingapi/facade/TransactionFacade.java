@@ -1,10 +1,10 @@
 package com.banking.dummybankingapi.facade;
 
-import com.banking.dummybankingapi.model.Account;
 import com.banking.dummybankingapi.model.Transaction;
 import com.banking.dummybankingapi.service.AccountService;
 import com.banking.dummybankingapi.service.TransactionService;
 import com.banking.dummybankingapi.service.dto.TransactionRequestDto;
+import com.banking.dummybankingapi.service.dto.TransactionUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
@@ -24,32 +24,18 @@ public class TransactionFacade {
         return transactionService.findAll();
     }
 
-    public void createTransaction(TransactionRequestDto requestDto) {
-        Account from = accountService.findById(requestDto.getAccountIdFrom());
-        Account to = accountService.findById(requestDto.getAccountIdTo());
+    public Transaction createTransaction(TransactionRequestDto requestDto) {
         Transaction transaction = modelMapper.map(requestDto, Transaction.class);
-        transaction.setAccountFrom(from);
-        transaction.setAccountTo(to);
 
-        transactionService.save(transaction);
+        return transactionService.save(transaction);
     }
 
     public Transaction readTransaction(Long id) {
         return transactionService.findById(id);
     }
 
-    public void updateTransaction(Long id, TransactionRequestDto requestDto) {
-        Transaction transaction = modelMapper.map(requestDto, Transaction.class);
-        transaction.setId(id);
-
-        if (requestDto.getAccountIdFrom() != null) {
-            transaction.setAccountFrom(accountService.findById(requestDto.getAccountIdFrom()));
-        }
-        if (requestDto.getAccountIdTo() != null) {
-            transaction.setAccountTo(accountService.findById(requestDto.getAccountIdTo()));
-        }
-
-        transactionService.update(transaction);
+    public void updateComment(Long id, TransactionUpdateRequestDto requestDto) {
+        transactionService.updateCommentById(id, requestDto.getComment());
     }
 
     public void deleteTransaction(Long id) {

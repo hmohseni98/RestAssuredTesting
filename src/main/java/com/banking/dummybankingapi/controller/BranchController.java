@@ -3,6 +3,7 @@ package com.banking.dummybankingapi.controller;
 import com.banking.dummybankingapi.facade.BranchFacade;
 import com.banking.dummybankingapi.model.Branch;
 import com.banking.dummybankingapi.service.dto.BranchRequestDto;
+import com.banking.dummybankingapi.service.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +23,8 @@ public class BranchController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createBranch(@RequestBody BranchRequestDto requestDto) {
-        branchFacade.createBranch(requestDto);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<ResponseDto> createBranch(@RequestBody BranchRequestDto requestDto) {
+        return ResponseEntity.ok(branchFacade.createBranch(requestDto));
     }
 
     @GetMapping("{id}")

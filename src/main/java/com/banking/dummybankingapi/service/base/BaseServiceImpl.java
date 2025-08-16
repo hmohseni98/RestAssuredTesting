@@ -29,8 +29,8 @@ public abstract class BaseServiceImpl<ID extends Serializable, E extends BaseEnt
 
     @Transactional
     @Override
-    public void save(E entity) {
-        repository.save(entity);
+    public E save(E entity) {
+        return repository.save(entity);
     }
 
     @Transactional
@@ -45,8 +45,8 @@ public abstract class BaseServiceImpl<ID extends Serializable, E extends BaseEnt
 
     @Transactional
     @Override
-    public void update(E entity) {
-        repository.save(entity);
+    public E update(E entity) {
+        return repository.save(entity);
     }
 
     @Transactional(readOnly = true)

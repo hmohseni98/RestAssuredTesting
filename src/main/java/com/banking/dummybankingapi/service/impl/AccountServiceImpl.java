@@ -4,7 +4,6 @@ import com.banking.dummybankingapi.model.Account;
 import com.banking.dummybankingapi.repository.AccountRepository;
 import com.banking.dummybankingapi.service.AccountService;
 import com.banking.dummybankingapi.service.base.BaseServiceImpl;
-import com.banking.dummybankingapi.service.dto.AccountRequestDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

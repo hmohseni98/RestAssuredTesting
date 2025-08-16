@@ -7,20 +7,18 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class TransactionRequestDto extends BaseRequestDto {
-    private Long amount;
-
+    private Long id;
+    private BigDecimal amount;
     private Integer type;
-
-    private Long accountIdFrom;
-
-    private Long accountIdTo;
-
+    private String accountCodeFrom;
+    private String accountCodeTo;
     private String comment;
 
-    private String status;
 }

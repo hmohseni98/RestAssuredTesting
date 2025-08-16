@@ -1,17 +1,14 @@
 package com.banking.dummybankingapi.service.dto;
 
-import com.banking.dummybankingapi.service.dto.base.BaseRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter
-@Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BranchRequestDto extends BaseRequestDto {
+@Getter
+@Setter
+public class ResponseDto {
     private Long id;
-    private Integer code;
-    private String description;
 }

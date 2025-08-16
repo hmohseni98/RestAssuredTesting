@@ -2,7 +2,9 @@ package com.banking.dummybankingapi.controller;
 
 import com.banking.dummybankingapi.facade.TransactionFacade;
 import com.banking.dummybankingapi.model.Transaction;
+import com.banking.dummybankingapi.service.dto.ResponseDto;
 import com.banking.dummybankingapi.service.dto.TransactionRequestDto;
+import com.banking.dummybankingapi.service.dto.TransactionUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,9 +24,8 @@ public class TransactionController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createTransaction(@RequestBody TransactionRequestDto requestDto) {
-        transactionFacade.createTransaction(requestDto);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Transaction> createTransaction(@RequestBody TransactionRequestDto requestDto) {
+        return ResponseEntity.ok(transactionFacade.createTransaction(requestDto));
     }
 
     @GetMapping("{id}")
@@ -33,9 +34,9 @@ public class TransactionController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Void> updateTransaction(@PathVariable Long id, @RequestBody TransactionRequestDto transactionRequestDto) {
-        transactionFacade.updateTransaction(id, transactionRequestDto);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Void> updateTransaction(@PathVariable Long id, @RequestBody TransactionUpdateRequestDto transactionRequestDto) {
+        transactionFacade.updateComment(id, transactionRequestDto);
+        return ResponseEntity.ok().build();
     }
 
     @DeleteMapping("{id}")

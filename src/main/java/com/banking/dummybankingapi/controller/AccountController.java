@@ -3,7 +3,9 @@ package com.banking.dummybankingapi.controller;
 import com.banking.dummybankingapi.facade.AccountFacade;
 import com.banking.dummybankingapi.model.Account;
 import com.banking.dummybankingapi.service.dto.AccountRequestDto;
+import com.banking.dummybankingapi.service.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,9 +23,8 @@ public class AccountController {
     }
 
     @PostMapping
-    public ResponseEntity<Void> createAccount(@RequestBody AccountRequestDto requestDto) {
-        accountFacade.createAccount(requestDto);
-        return ResponseEntity.noContent().build();
+    public ResponseEntity<Account> createAccount(@RequestBody AccountRequestDto requestDto) {
+        return ResponseEntity.ok(accountFacade.createAccount(requestDto));
     }
 
     @GetMapping("{id}")

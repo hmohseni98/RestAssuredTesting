@@ -10,8 +10,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BranchRequestDto extends BaseRequestDto {
-    private Long id;
-    private Integer code;
-    private String description;
+public class TransactionUpdateRequestDto extends BaseRequestDto {
+    private String comment;
 }

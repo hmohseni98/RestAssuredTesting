@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface BaseService<ID extends Serializable, E extends BaseEntity<ID>> {
 
-    void save(E entity);
+    E save(E entity);
 
     void delete(Long id);
 
-    void update(E entity);
+    E update(E entity);
 
     E findById(Long id);
 
