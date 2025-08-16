@@ -11,4 +11,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BranchRequestDto extends BaseRequestDto {
+    private Integer code;
+
+    private String description;
 }
