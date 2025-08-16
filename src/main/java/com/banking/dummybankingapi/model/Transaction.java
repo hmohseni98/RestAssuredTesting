@@ -1,17 +1,15 @@
 package com.banking.dummybankingapi.model;
 
 
-import com.banking.dummybankingapi.model.enumerated.TransactionStatusTypeEnum;
+import com.banking.dummybankingapi.model.base.BaseEntity;
+import com.banking.dummybankingapi.model.enumeration.TransactionStatusTypeEnum;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
 @Entity
-public class Transaction {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class Transaction extends BaseEntity<Long> {
     private Long amount;
 
     @CreationTimestamp
@@ -19,14 +17,15 @@ public class Transaction {
 
     private Integer type;
 
-    private String accountCodeFrom;
+    @ManyToOne
+    private Account accountFrom;
 
-    private String accountCodeTo;
+    @ManyToOne
+    private Account accountTo;
 
     private String comment;
 
     @Enumerated(EnumType.STRING)
     private TransactionStatusTypeEnum status = TransactionStatusTypeEnum.PENDING;
-
 
 }

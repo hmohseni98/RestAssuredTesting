@@ -1,4 +1,4 @@
-package com.banking.dummybankingapi.model.enumerated;
+package com.banking.dummybankingapi.model.enumeration;
 
 public enum TransactionStatusTypeEnum {
     PENDING,

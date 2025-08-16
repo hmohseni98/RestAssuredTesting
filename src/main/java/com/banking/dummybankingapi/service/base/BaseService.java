@@ -1,18 +1,20 @@
 package com.banking.dummybankingapi.service.base;
 
+import com.banking.dummybankingapi.model.base.BaseEntity;
+import com.banking.dummybankingapi.service.dto.base.BaseRequestDto;
+
 import java.io.Serializable;
 import java.util.List;
-import java.util.Optional;
 
-public interface BaseService<E> {
+public interface BaseService<ID extends Serializable, E extends BaseEntity<ID>> {
 
-    void save(E e);
+    void save(E entity);
 
     void delete(Long id);
 
-    void update(E e);
+    void update(E entity);
 
-    Optional<E> findById(Long id);
+    E findById(Long id);
 
     List<E> findAll();
 }
